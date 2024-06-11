@@ -8,6 +8,8 @@ export class OutputHandler {
     }
 
     printOutput() {
+        console.log('--------------------------------------------------------------')
+        console.log('X files analyzed')
         console.log('==============================================================')
         console.log('NGT             >>>>>>            file')
         console.log('--------------------------------------------------------------')
