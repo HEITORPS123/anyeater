@@ -11,8 +11,8 @@ export class FilesReader {
         this.filePostfix = '/**/*.ts'
     }
 
-    getFiles(dir: string) {
-        var dirList: string[] = glob.sync(dir + this.filePostfix)
+    getFiles() {
+        var dirList: string[] = glob.sync(this.options.dir + this.filePostfix)
         var filesToExclude: string[] = []
         if (this.options.whitelist) {
             filesToExclude = fs.readFileSync(this.options.whitelist).toString().split('\n')
