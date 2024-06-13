@@ -4,9 +4,7 @@ import { ArgumentsParser } from './data/parser/args'
 import { OptionValues } from 'commander'
 import * as ts from "typescript"
 import { CodeParser } from './data/parser/code'
-  
-var typesDict: { [id: string] : number; } = {}
-var genericTypesPerFile: { [id: string] : number; } = {}
+
 var options: OptionValues
 
 function index() {
@@ -26,7 +24,7 @@ function index() {
     const outputFormat = options.format ?? 'std'
     switch (outputFormat) {
         case 'std':
-            const outputHandler = new OutputHandler(typesDict, genericTypesPerFile, options)
+            const outputHandler = new OutputHandler(parser.typesDict, parser.genericTypesPerFile, options)
             outputHandler.printOutput()
             break
         case 'csv':

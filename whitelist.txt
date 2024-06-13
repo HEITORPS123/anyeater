@@ -1,0 +1,1 @@
+../tcc/tmp/alpaca/dist/mjs/client.d.ts

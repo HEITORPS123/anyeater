@@ -1,5 +1,5 @@
 import { Command } from 'commander'
-const projectInfos = require('../../package.json')
+const projectInfos = require('../../../package.json')
 
 export class ArgumentsParser {
     program: Command
@@ -12,9 +12,9 @@ export class ArgumentsParser {
         this.program.version(projectInfos.version, '-v, --vers', 'output the current version')
         this.program
             .option('-p, --path <project-path>', 'path to project')
-            .option('-t, --threshold', 'limit to define excessive generic type use')
+            .option('-t, --threshold <number>', 'limit to define excessive generic type use')
             .option('-V, --verbose', 'activate verbose mode')
-            .option('-w, --whitelist', 'path to file containing files to exclude from analysis')
+            .option('-w, --whitelist <whitelist-path>', 'path to file containing files to exclude from analysis')
             .option('-f, --format <type>', 'type of format to print (standard, csv, xml)')
     }
 

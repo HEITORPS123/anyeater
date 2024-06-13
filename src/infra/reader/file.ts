@@ -12,7 +12,7 @@ export class FilesReader {
     }
 
     getFiles() {
-        var dirList: string[] = glob.sync(this.options.dir + this.filePostfix)
+        var dirList: string[] = glob.sync(this.options.path + this.filePostfix)
         var filesToExclude: string[] = []
         if (this.options.whitelist) {
             filesToExclude = fs.readFileSync(this.options.whitelist).toString().split('\n')
