@@ -2,16 +2,18 @@ export class OutputHandler {
     typesInfo: any
     infosList: any
     options: any
+    numberOfFiles: number
 
     constructor(typesInfo: any, infosList: any, options: any) {
         this.typesInfo = typesInfo
         this.infosList = infosList
         this.options = options
+        this.numberOfFiles = Object.keys(this.infosList).length
     }
 
     printOutput() {
         console.log('--------------------------------------------------------------')
-        console.log(' files analyzed')
+        console.log(this.numberOfFiles.toString() + ' files analyzed')
         console.log('==============================================================')
         console.log('NGT             >>>>>>            file')
         console.log('--------------------------------------------------------------')

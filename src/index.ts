@@ -4,6 +4,7 @@ import { ArgumentsParser } from './data/parser/args'
 import { OptionValues } from 'commander'
 import * as ts from "typescript"
 import { CodeParser } from './data/parser/code'
+import { FilesWriter } from './infra/writer/file'
 
 var options: OptionValues
 
@@ -22,14 +23,18 @@ function index() {
     }
 
     const outputFormat = options.format ?? 'std'
+
+    const filesWriter = new FilesWriter(options, parser.genericTypesPerFile)
     switch (outputFormat) {
         case 'std':
             const outputHandler = new OutputHandler(parser.typesDict, parser.genericTypesPerFile, options)
             outputHandler.printOutput()
             break
         case 'csv':
+            filesWriter.writeCSV()
             break
         case 'xml':
+            filesWriter.writeXML()
             break
     }
 }
