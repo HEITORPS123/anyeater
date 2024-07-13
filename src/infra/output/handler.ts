@@ -1,3 +1,5 @@
+import CliTable3 from "cli-table3"
+
 export class OutputHandler {
     typesInfo: any
     infosList: any
@@ -12,27 +14,27 @@ export class OutputHandler {
     }
 
     printOutput() {
+        let table = new CliTable3({
+            head: ['NGT', 'Filename']
+        })
+
         console.log('--------------------------------------------------------------')
         console.log(this.numberOfFiles.toString() + ' files analyzed')
         console.log('==============================================================')
-        console.log('NGT             >>>>>>            file')
-        console.log('--------------------------------------------------------------')
-        
+       
         const threshold = parseInt(this.options.threshold)
         let thresholdViolations: string[] = []
         if (threshold) {
             for (let filename in this.infosList) {
                 const output = `${this.infosList[filename]}                               ${filename}`
                 if (this.infosList[filename] < threshold) {
-                    console.log(output)
+                    //console.log(output)
+                    table.push([this.infosList[filename],filename])
                 } else {
                     thresholdViolations.push(output)
                 }
             }
-
-            console.log()
-            console.log(`-------------!!! WARNING: NUMBER OF 'any's > ${threshold} !!!------------`)
-            console.log()
+            console.log(table.toString())
             for (const line of thresholdViolations) {
                 console.log(line)
             }
