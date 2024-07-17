@@ -21,7 +21,7 @@ export class FilesWriter {
     }
 
     writeToFile(data: string) {
-        fs.writeFile('form-tracking/formList.csv', data, 'utf8', function (err) {
+        fs.writeFile('reports/report_current_date.csv', data, 'utf8', function (err) {
             if (err) {
                 console.log('Some error occured - file either not saved or corrupted file saved.')
             } else{

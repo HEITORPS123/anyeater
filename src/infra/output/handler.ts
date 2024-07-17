@@ -26,18 +26,17 @@ export class OutputHandler {
         let thresholdViolations: string[] = []
         if (threshold) {
             for (let filename in this.infosList) {
-                const output = `${this.infosList[filename]}                               ${filename}`
                 if (this.infosList[filename] < threshold) {
-                    //console.log(output)
                     table.push([this.infosList[filename],filename])
                 } else {
-                    thresholdViolations.push(output)
+                    thresholdViolations.push(filename)
                 }
             }
-            console.log(table.toString())
-            for (const line of thresholdViolations) {
-                console.log(line)
+            table.push(['-',`WARNING: NUMBER OF 'any's > ${threshold} !!!`])
+            for (const filename of thresholdViolations) {
+                table.push([this.infosList[filename],filename])
             }
+            console.log(table.toString())
         } else {
             for (let filename in this.infosList) {
                 console.log(this.infosList[filename] + '                               ' + filename)
