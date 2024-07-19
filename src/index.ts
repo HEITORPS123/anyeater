@@ -33,9 +33,6 @@ function index() {
         case 'csv':
             filesWriter.writeCSV()
             break
-        case 'xml':
-            filesWriter.writeXML()
-            break
     }
 }
 

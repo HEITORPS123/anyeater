@@ -46,7 +46,7 @@ export class OutputHandler {
         console.log('--------------------------------------------------------------')
 
         for (let nodeType in this.typesInfo) {
-        console.log(nodeType + '  =  ' + this.typesInfo[nodeType])
+            console.log(nodeType + '  =  ' + this.typesInfo[nodeType])
         }
     }
 }
