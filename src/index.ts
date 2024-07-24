@@ -25,12 +25,14 @@ function index() {
         (() => parser.generateAst(sourceFile, sourceFile, sourceFile.fileName))();
     }
 
+    const outputHandler = new OutputHandler(parser.typesDict, parser.typeCount, parser.genericTypesPerFile, options)
+    outputHandler.printTitle()
+
     const outputFormat = options.format ?? 'std'
 
     const filesWriter = new FilesWriter(options, parser.genericTypesPerFile)
     switch (outputFormat) {
         case 'std':
-            const outputHandler = new OutputHandler(parser.typesDict, parser.genericTypesPerFile, options)
             outputHandler.printOutput()
             break
         case 'csv':

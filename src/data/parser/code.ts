@@ -2,12 +2,14 @@ import * as ts from "typescript"
 
 export class CodeParser {
     options: any
-    typesDict: { [id: string] : number; }
+    typesDict: { [id: string] : any; }
+    typeCount: { [id: string]: number; }
     genericTypesPerFile: { [id: string] : number; }
 
     constructor(options: any) {
         this.options = options
         this.typesDict = {}
+        this.typeCount = {}
         this.genericTypesPerFile = {}
     }
 
@@ -16,9 +18,6 @@ export class CodeParser {
         const nodeText = node.getText(sourceFile);
     
         var currentNode = node.parent
-        //if (ts.isTypeNode(node)) {
-        //    console.log(nodeText)
-        //}
         if (syntaxKind == 'AnyKeyword') {
             let { line, character } =  sourceFile.getLineAndCharacterOfPosition(node.getStart())
             var parentType = ts.SyntaxKind[currentNode?.kind]
@@ -29,8 +28,15 @@ export class CodeParser {
             if (this.options.verbose) {
                 console.log(`${parentType}    ${sourceFile.fileName}@${line}:${character}`)
             }
-            this.typesDict[parentType] !== undefined ? this.typesDict[parentType]++ : this.typesDict[parentType] = 1
+            this.typeCount[parentType] !== undefined ? this.typeCount[parentType]++ : this.typeCount[parentType] = 1
             this.genericTypesPerFile[filename] !== undefined ? this.genericTypesPerFile[filename]++ : this.genericTypesPerFile[filename] = 1
+
+            if (this.typesDict[filename] === undefined) this.typesDict[filename] = {}
+            if (this.typesDict[filename][parentType] === undefined) {
+                this.typesDict[filename][parentType] = 1
+            } else {
+                this.typesDict[filename][parentType] += 1
+            }
         }
     
         node.forEachChild((child) => this.generateAst(child, sourceFile, filename));
