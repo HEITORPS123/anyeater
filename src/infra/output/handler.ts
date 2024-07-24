@@ -1,4 +1,5 @@
 import CliTable3 from "cli-table3"
+import chalk from "chalk"
 
 export class OutputHandler {
     typesInfo: any
@@ -32,17 +33,17 @@ export class OutputHandler {
                     thresholdViolations.push(filename)
                 }
             }
-            table.push(['-',`WARNING: NUMBER OF 'any's > ${threshold} !!!`])
+            table.push(['-',chalk.bgRed.bold(`WARNING: NUMBER OF 'any's > ${threshold} !!!`)])
             for (const filename of thresholdViolations) {
                 table.push([this.infosList[filename],filename])
             }
-            console.log(table.toString())
         } else {
             for (let filename in this.infosList) {
-                console.log(this.infosList[filename] + '                               ' + filename)
+                table.push([this.infosList[filename],filename])
             }
         }
 
+        console.log(table.toString())
         console.log('--------------------------------------------------------------')
 
         for (let nodeType in this.typesInfo) {

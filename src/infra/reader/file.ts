@@ -3,16 +3,18 @@ import * as glob from 'glob'
 import * as ts from "typescript"
 
 export class FilesReader {
+    path: string
     options: any
     filePostfix: string
 
-    constructor(options: any) {
+    constructor(path: string, options: any) {
+        this.path = path
         this.options = options
         this.filePostfix = '/**/*.ts'
     }
 
     getFiles() {
-        var dirList: string[] = glob.sync(this.options.path + this.filePostfix)
+        var dirList: string[] = glob.sync(this.path + this.filePostfix)
         var filesToExclude: string[] = []
         if (this.options.whitelist) {
             filesToExclude = fs.readFileSync(this.options.whitelist).toString().split('\n')

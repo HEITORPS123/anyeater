@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { FilesReader } from './infra/reader/file'
 import { OutputHandler } from './infra/output/handler'
 import { ArgumentsParser } from './data/parser/args'
@@ -12,9 +14,10 @@ function index() {
     const argsParser = new ArgumentsParser()
     argsParser.createArguments()
     argsParser.parse(process.argv)
+    const path = argsParser.getPath()
     options = argsParser.getOptions()
 
-    const filesReader = new FilesReader(options)
+    const filesReader = new FilesReader(path, options)
     const filesList = filesReader.getFiles()
 
     const parser = new CodeParser(options)

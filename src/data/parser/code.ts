@@ -16,6 +16,9 @@ export class CodeParser {
         const nodeText = node.getText(sourceFile);
     
         var currentNode = node.parent
+        //if (ts.isTypeNode(node)) {
+        //    console.log(nodeText)
+        //}
         if (syntaxKind == 'AnyKeyword') {
             let { line, character } =  sourceFile.getLineAndCharacterOfPosition(node.getStart())
             var parentType = ts.SyntaxKind[currentNode?.kind]
