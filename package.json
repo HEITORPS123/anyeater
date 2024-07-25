@@ -1,7 +1,21 @@
 {
   "name": "anyeater",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "bin": {
     "anyeater": "dist/index.js"
   },
@@ -10,13 +24,15 @@
   },
   "scripts": {
     "start": "node dist/index.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsup ./src"
   },
   "devDependencies": {
     "@types/figlet": "^1.5.8",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.2",
     "jest": "^29.7.0",
+    "tsup": "^8.2.3",
     "typescript": "^5.4.5"
   },
   "dependencies": {
