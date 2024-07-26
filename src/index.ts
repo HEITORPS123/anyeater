@@ -19,13 +19,14 @@ function index() {
 
     const filesReader = new FilesReader(path, options)
     const filesList = filesReader.getFiles()
+    const numberFilesTotal = Object.keys(filesList).length
 
     const parser = new CodeParser(options)
     for(const sourceFile of filesList) {
         (() => parser.generateAst(sourceFile, sourceFile, sourceFile.fileName))();
     }
 
-    const outputHandler = new OutputHandler(parser.typesDict, parser.typeCount, parser.genericTypesPerFile, options)
+    const outputHandler = new OutputHandler(parser.typesDict, parser.typeCount, parser.genericTypesPerFile, numberFilesTotal, options)
     outputHandler.printTitle()
 
     const outputFormat = options.format ?? 'std'

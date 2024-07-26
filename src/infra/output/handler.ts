@@ -7,14 +7,18 @@ export class OutputHandler {
     typeCount: any
     infosList: any
     options: any
-    numberOfFiles: number
+    numberFilesFlagged: number
+    numberFilesTotal: number
 
-    constructor(typesInfo: any, typeCount: any, infosList: any, options: any) {
+    constructor(typesInfo: any, typeCount: any, infosList: Record<string, number>, numberFilesTotal: any, options: any) {
         this.typesInfo = typesInfo
         this.typeCount = typeCount
-        this.infosList = infosList
+        this.infosList = Object.fromEntries(
+            Object.entries(infosList).sort(([,a],[,b]) => a-b)
+        )
         this.options = options
-        this.numberOfFiles = Object.keys(this.infosList).length
+        this.numberFilesFlagged = Object.keys(this.infosList).length
+        this.numberFilesTotal = numberFilesTotal
     }
 
     printTitle() {
@@ -31,7 +35,7 @@ export class OutputHandler {
         })
 
         console.log('--------------------------------------------------------------')
-        console.log(this.numberOfFiles.toString() + ' files were analyzed')
+        console.log(this.numberFilesTotal.toString() + ' files were analyzed')
         console.log('--------------------------------------------------------------')
 
         const threshold = parseInt(this.options.threshold)
@@ -56,9 +60,22 @@ export class OutputHandler {
 
         console.log(table.toString())
         console.log('--------------------------------------------------------------')
+        console.log(this.numberFilesFlagged.toString() + ' files contained generic types')
+        console.log('--------------------------------------------------------------')
 
-        for (let nodeType in this.typeCount) {
-            console.log(nodeType + '  =  ' + this.typeCount[nodeType])
+        let totalNgt = 0
+        let totalFirstType = 0
+        let totalSecondType = 0
+        for (let filename in this.infosList) {
+            totalNgt += this.infosList[filename]
+            totalFirstType += this.typesInfo[filename][keysSorted[0]] ?? 0
+            totalSecondType += this.typesInfo[filename][keysSorted[1]] ?? 0
         }
+
+        let sumTable = new CliTable3({
+            head: ['Number of Files', 'Total NGT', `Total ${keysSorted[0]}`, `Total ${keysSorted[1]}`]
+        })
+        sumTable.push([this.numberFilesFlagged.toString(), totalNgt, totalFirstType, totalSecondType])
+        console.log(sumTable.toString())
     }
 }
