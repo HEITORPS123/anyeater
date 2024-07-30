@@ -1,22 +1,23 @@
 
 <div align="center">
     <img
-      src="logo.png"
-      width="400"
+      src="icone.png"
+      width="500"
       height="auto"      
     />
   </a>
 </div>
 
 <div align="center">
-    
+
+<br></br>
 [![npm version](https://img.shields.io/badge/npm-v0.0.3-red)](https://www.npmjs.com/package/anyeater)
 [![license](https://img.shields.io/github/license/HEITORPS123/anyeater)](https://github.com/HEITORPS123/anyeater?tab=MIT-1-ov-file#readme)
 [![Benchmark Suite](https://img.shields.io/github/actions/workflow/status/HEITORPS123/anyeater/release-package.yml)](https://github.com/HEITORPS123/anyeater/actions/workflows/release-package.yml)
 
 </div>
 
-##
+# AnyEater
 
 AnyEater is a command-line tool that analyzes Typescript code projects and provides a detailed report on the use of the generic type "any". According to Microsoft's own Typescript wiki, the use of "any" should be avoided at all costs, only being acceptable in instances where a codebase is being converted from Javascript to Typescript, therefore it should be considered a code-smell. Inspired by other projects such as Lizard and PMD, aims to eliminate the need to use it by outlining exactly where and how much the generic type is used.
 
