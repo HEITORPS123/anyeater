@@ -1,22 +1,22 @@
 
 <div align="center">
     <img
-      src="https://freesvg.org/img/1704184264Anteater1b.png"
-      width="300"
-      height="auto"
+      src="logo.png"
+      width="400"
+      height="auto"      
     />
   </a>
 </div>
 
 <div align="center">
     
-[![npm version](https://img.shields.io/badge/npm-v0.0.2-red)](https://www.npmjs.com/package/anyeater)
+[![npm version](https://img.shields.io/badge/npm-v0.0.3-red)](https://www.npmjs.com/package/anyeater)
 [![license](https://img.shields.io/github/license/HEITORPS123/anyeater)](https://github.com/HEITORPS123/anyeater?tab=MIT-1-ov-file#readme)
 [![Benchmark Suite](https://img.shields.io/github/actions/workflow/status/HEITORPS123/anyeater/release-package.yml)](https://github.com/HEITORPS123/anyeater/actions/workflows/release-package.yml)
 
 </div>
 
-# AnyEater
+##
 
 AnyEater is a command-line tool that analyzes Typescript code projects and provides a detailed report on the use of the generic type "any". According to Microsoft's own Typescript wiki, the use of "any" should be avoided at all costs, only being acceptable in instances where a codebase is being converted from Javascript to Typescript, therefore it should be considered a code-smell. Inspired by other projects such as Lizard and PMD, aims to eliminate the need to use it by outlining exactly where and how much the generic type is used.
 
@@ -34,7 +34,11 @@ There's also the option of downloading the source code and building it yourself
 
 In order to use the AnyEater tool, after a successful installation, you can simply invoke the program via command line
 
-    anyeater -p <path-to-project>
+    anyeater <path-to-project>
+
+Or, if the program is not in your path
+
+    npx anyeater
 
 ## Options
 
