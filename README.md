@@ -1,7 +1,7 @@
 
 <div align="center">
     <img
-      src="icone.png"
+      src="img/icone.png"
       width="500"
       height="auto"      
     />
@@ -52,6 +52,16 @@ Or, if the program is not in your path
                         defines files that the program should ignore when analyzing a project
     -f, --format <type>        
                         defines type of format output should be printed in
+
+## Example
+
+<div align="center">
+    <img
+      src="img/anyeater.gif"
+      height="auto"      
+    />
+  </a>
+</div>
 
 ## License
 
